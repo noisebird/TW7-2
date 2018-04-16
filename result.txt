@@ -5,3 +5,28 @@ practice1:
 +----+------------+------+----------+-----------+--------+
 |  1 | 'xiaohong' |   19 | 'female' |         1 |   7000 |
 +----+------------+------+----------+-----------+--------+
+
+practice2:
+执行sql： select a.name,c.companyName from (
+            select e.name,e.companyId from employee e,(select companyId,max(salary) maxsalary from employee group by companyId) s
+            where e.companyId=s.companyId and s.maxsalary=e.salary) a inner join Company c ON a.companyId=c.id;
++------------+-------------+
+| name       | companyName |
++------------+-------------+
+| 'xiaoming' | 'baidu'     |
+| 'xiaohong' | 'alibaba'   |
+| 'xiaozhi'  | 'tengxun'   |
++------------+-------------+
+
+
+practice3:
+执行sql: select companyName, avgSalary from (
+       select companyId,avg(salary) avgSalary from employee group by companyId order by avgSalary desc limit 0,1
+       ) a inner join company c on a.companyId = c.id;
++-------------+-----------+
+| companyName | avgSalary |
++-------------+-----------+
+| 'tengxun'   | 8000.0000 |
++-------------+-----------+
+
+
