@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>employee_db</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-1019320680287919224</string>
+			<key>name</key>
+			<string>mysql</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
+			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
+			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
+			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
+			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
+			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVk
+			QXJjaGl2ZXLRJidUZGF0YYABAAgAEQAaACMALQAyADcAQABGAE0A
+			VQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMAtQC3ALwAxwDQ
+			ANsA3gDpAPIA9wEEAQcBGQEcASEAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1024, 620}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>select * from employee e inner join Company c on e.companyId=c.id where e.name like '%n%' and e.salary&gt;6000
+
+select c.companyId from employee e inner join company c on e.companyId =c.id group by c.companyId
+
+select * from employee where salary=(select max(salary) from employee)
+
+select companyName,from company where companyId=(select companyId from employee group by companyId)
+
+select * from employee union select * from company
+
+select * from (select companyId,max(salary) from employee group by companyId innner)
+
+select * from employee where salary in(select max(salary) from employee group by companyId)
+
+select a.name,c.companyName from (select e.name,e.companyId from employee e,(select companyId,max(salary) maxsalary from employee group by companyId) s where e.companyId=s.companyId and s.maxsalary=e.salary) a inner join Company c ON a.companyId=c.id
+select c.companyName from (
+select a.companyId,max(avgsalary) from (select companyId,avg(salary) avgsalary from employee group by companyId) a group by a.companyId
+) e inner join Company c on e.companyId=c.id;
+
+select companyName,avgsalary avgSalary from (
+select companyId,avg(salary) avgSalary from employee group by companyId order by avgSalary desc limit 0,1
+) a inner join company c on a.companyId=c.id;
+
+</string>
+			<key>table</key>
+			<string>Employee</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>select companyName,avgsalary avgSalary from (
+select companyId,avg(salary) avgsalary from employee group by companyId order by avgsalary desc limit 0,1
+) a inner join company c on a.companyId=c.id</string>
+		<string>select * from (
+select companyId,avg(salary) avgsalary from employee group by companyId order by avgsalary desc limit 0,1
+) a inner join company c on a.companyId=c.id</string>
+		<string>select * from (
+select companyId,avg(salary) avgsalary from employee group by companyId order by maxsalary desc limit 0,1
+) a inner join company c on a.companyId=c.id</string>
+		<string>select companyId,sum(salary) maxsalary from employee group by companyId order by maxsalary desc limit 0,1</string>
+		<string>select companyId,sum(salary) maxsalary from employee group by companyId order by maxsalary desc</string>
+		<string>select companyId,sum(salary) maxsalary from employee group by companyId order by companyId asc</string>
+		<string>select companyId,sum(salary) maxsalary from employee group by companyId</string>
+		<string>select * from employee order by id asc limit 0,1</string>
+		<string>select * from employee limit by 0,1</string>
+		<string>select a.companyId,max(a.maxsalary) from (
+select companyId,sum(salary) maxsalary from employee group by companyId) a group by a.companyId</string>
+		<string>select a.companyId,max(a.maxsalary) from (
+select companyId,sum(salary) maxsalary, from employee group by companyId) a group by a.companyId</string>
+		<string>select a.companyId,max(a.maxsalary),avg(a.maxsalary) from (
+select companyId,sum(salary) maxsalary,avg(salary) avgsalary from employee group by companyId) a group by a.companyId</string>
+		<string>select a.companyId,max(a.maxsalary) from (
+select companyId,sum(salary) maxsalary,avg(salary) avgsalary from employee group by companyId) a</string>
+		<string>select max(a.maxsalary) from (
+select companyId,sum(salary) maxsalary,avg(salary) avgsalary from employee group by companyId) a</string>
+		<string>select companyId,max(sum(salary)) maxsalary,avg(salary) avgsalary from employee group by companyId</string>
+		<string>select companyId,sum(salary) maxsalary,avg(salary) avgsalary from employee group by companyId</string>
+		<string>select companyId,max(salary) maxsalary from employee group by companyId</string>
+		<string>select companyId,max(salary) maxsalary,avg(salary) avgsalary from employee group by companyId</string>
+		<string>select companyId,avg(salary) from employee e,(
+select a.companyId, max(sumsalary) maxcompany from (
+select companyId,sum(salary) sumsalary from employee group by companyId) a group by a.companyId)
+a where e.companyId =a.companyId group by companyId</string>
+		<string>select companyId,avg(salary) from employee e,(
+select a.companyId, max(sumsalary) maxcompany from (
+select companyId,sum(salary) sumsalary from employee group by companyId) a group by a.companyId)
+a where e.companyId =a.companyId</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.7.20</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
