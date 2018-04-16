@@ -29,4 +29,14 @@ practice3:
 | 'tengxun'   | 8000.0000 |
 +-------------+-----------+
 
+practice4:
+执行sql：select id,name,age,gender,e.companyId,salary,companyName,avgsal from employee e inner join (
+      select companyId,companyName,avgsal from (select companyId,avg(salary) avgsal from employee group by companyId) tmptable,company c
+      where c.id=tmptable.companyId) a on e.companyId=a.companyId where salary>avgsal;
 
+ +----+------------+------+----------+-----------+--------+-------------+-----------+
+ | id | name       | age  | gender   | companyId | salary | companyName | avgsal    |
+ +----+------------+------+----------+-----------+--------+-------------+-----------+
+ |  0 | 'xiaoming' |   20 | 'male'   |         0 |   6000 | 'baidu'     | 5000.0000 |
+ |  1 | 'xiaohong' |   19 | 'female' |         1 |   7000 | 'alibaba'   | 6500.0000 |
+ +----+------------+------+----------+-----------+--------+-------------+-----------+
